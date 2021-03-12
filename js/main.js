@@ -1,7 +1,7 @@
 /* Creazione slider per carousel immagini*/
 $(function() {
 
-  // richiamo funzione per scorrere all'immagine successiva
+  // richiamo funzione per scorrere all'immagine successiva e cambiare il colore del bullet
   var next = $(".next");
   next.click(
     function (){
@@ -9,7 +9,8 @@ $(function() {
       nextBull();
     }
   );
-  // richiamo funzione per scorrere all'immagine precedente
+
+  // richiamo funzione per scorrere all'immagine precedente e cambiare il colore del bullet
   var prev = $(".prev");
   prev.click(
     function (){
@@ -17,21 +18,24 @@ $(function() {
       prevBull();
     }
   );
-  // richiamo funzioni per scorrere i bullets
-  var nextBullet = $(".nav i");
-  nextBullet.click(
+  var changeBull = $(".nav i");
+  changeBull.click(
     function(){
-      nextBull();
-      nextImg();
+      toImage();
     }
   );
-  var prevBullet = $(".nav i");
-  prevBullet.click(
-    function(){
-      prevBull();
-      prevImg();
+  // scorrimento delle immagini tramite l'uso delle frecce della tastiera
+  $(document).keydown(
+    function(e){
+      if(e.keyCode == 39){
+        nextImg();
+        nextBull();
+      } else if (e.keyCode == 37){
+        prevBull();
+        prevImg();
+      }
     }
-  );
+  )
 }
 );
 
@@ -78,4 +82,13 @@ function prevBull(){
   } else {
     bullet.prev().addClass("active");
   }
+}
+function toImage(){
+  var bullet = $(".nav i");
+  var image = $(".images img");
+  var index = bullet.index($(this));
+  $(".nav").children().removeClass("active");
+  $(this).addClass("active");
+  image.removeClass("active");
+  image.eq(index).addClass("active");
 }
