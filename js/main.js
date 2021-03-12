@@ -1,6 +1,5 @@
 /* Creazione slider per carousel immagini*/
 $(function() {
-
   // richiamo funzione per scorrere all'immagine successiva e cambiare il colore del bullet
   var next = $(".next");
   next.click(
@@ -9,7 +8,6 @@ $(function() {
       nextBull();
     }
   );
-
   // richiamo funzione per scorrere all'immagine precedente e cambiare il colore del bullet
   var prev = $(".prev");
   prev.click(
@@ -18,7 +16,8 @@ $(function() {
       prevBull();
     }
   );
-  var changeBull = $(".nav i");
+  // richiamo funzione per scorrere immagini tramite bullets
+  var changeBull = $(".nav .fas.fa-circle");
   changeBull.click(
     function(){
       toImage();
@@ -38,7 +37,6 @@ $(function() {
   )
 }
 );
-
 // creo funzione per scorrere all'immagine successiva
 function nextImg(){
   var imgActive = $(".images img.active");
@@ -83,6 +81,7 @@ function prevBull(){
     bullet.prev().addClass("active");
   }
 }
+// funzione per scorrere le immagini tramite i bullets
 function toImage(){
   var bullet = $(".nav i");
   var image = $(".images img");
