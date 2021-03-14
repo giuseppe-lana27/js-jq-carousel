@@ -16,11 +16,17 @@ $(function() {
       prevBull();
     }
   );
-  // richiamo funzione per scorrere immagini tramite bullets
-  var changeBull = $(".nav .fas.fa-circle");
+  // funzione per scorrere le immagini tramite i bullets
+  var changeBull = $(".nav i");
   changeBull.click(
-    function(){
-      toImage();
+    function toImage(){
+      var bullet = $(".nav i");
+      var image = $(".images img");
+      var index = bullet.index($(this));
+      $(".nav").children().removeClass("active");
+      $(this).addClass("active");
+      image.removeClass("active");
+      image.eq(index).addClass("active");
     }
   );
   // scorrimento delle immagini tramite l'uso delle frecce della tastiera
@@ -80,14 +86,4 @@ function prevBull(){
   } else {
     bullet.prev().addClass("active");
   }
-}
-// funzione per scorrere le immagini tramite i bullets
-function toImage(){
-  var bullet = $(".nav i");
-  var image = $(".images img");
-  var index = bullet.index($(this));
-  $(".nav").children().removeClass("active");
-  $(this).addClass("active");
-  image.removeClass("active");
-  image.eq(index).addClass("active");
 }
